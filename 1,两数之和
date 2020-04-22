@@ -9,6 +9,21 @@
 所以返回 [0, 1]
 
 
+#golang:
+func twoSum(nums []int, target int) []int {
+    var m = make(map[int]int,0)
+    for i,value := range nums{
+        _, ok := m[target - value]
+        if ok{
+            return []int{m[target - value],i}
+        }
+        m[value] = i
+    }
+    return []int{}
+}
+
+
+#python
 1.
 class Solution(object):
     def twoSum(self, nums, target):
