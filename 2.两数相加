@@ -10,11 +10,39 @@
 输出：7 -> 0 -> 8
 原因：342 + 465 = 807
 
+#golang
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+    var enter,sum int
+    var res = new(ListNode)
+    node1 := l1
+	node2 := l2
+    node3 := res
+    for (node1 != nil || node2 != nil || enter >0){
+		node3.Next = new(ListNode)
+		node3 = node3.Next
+	    b := 0 
+        c := 0 
+        if node1 != nil { 
+            b = node1.Val 
+        } 
+        if node2 != nil { 
+            c = node2.Val 
+        }
+        sum = b + c + enter
+        node3.Val = sum%10
+        enter = sum/10
+        if node1 != nil {
+            node1 = node1.Next
+        }
+        if node2 != nil{
+            node2 = node2.Next
+        }
+    }
+    return res.Next
+}
 
-
-
-
-1.思路就是安个位十位百位分别处理
+#python
+1.思路就是安个位十位百位分别处理(缺点，未充分利用l1,l2)
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, x):
@@ -44,4 +72,24 @@ class Solution(object):
                 break
             else:
                 restemp = restemp.next
+        return res.next
+2.
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+        enter=0
+        res = ListNode(0)
+        restemp = res
+        while l1 or l2:
+            x = l1.val if l1 else 0
+            y = l2.val if l2 else 0
+            sum = x + y + enter
+            enter = sum // 10
+            if l1:#长度肯不一样
+                l1 = l1.next
+            if l2:
+                l2 = l2.next
+            restemp.next = ListNode(sum % 10)
+            restemp = restemp.next
+        if enter != 0:  #注意只有一个值切金伟的情况
+            restemp.next = ListNode(1)
         return res.next
