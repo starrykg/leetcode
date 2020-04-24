@@ -10,6 +10,7 @@
 
 
 #golang:
+a.map保存值，同时进行查找
 func twoSum(nums []int, target int) []int {
     var m = make(map[int]int,0)
     for i,value := range nums{
