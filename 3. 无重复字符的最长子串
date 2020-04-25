@@ -22,9 +22,8 @@
 1.从左到右每次记录最长的无重复字符串
 func lengthOfLongestSubstring(s string) int {
     var content,index int
-    var left,right int
     var flow string
-    for ; right < len(s); right++{
+    for left,right := 0,0 ; right < len(s); right++{
         index =  strings.IndexByte(flow, s[right])
         if index != -1{
             left += index + 1
